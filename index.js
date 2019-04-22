@@ -3,8 +3,9 @@
 const { welcome } = require('./src/helpers');
 const questions = require('./src/questions');
 const cli = require('./src/cli');
+const package = require('./package.json');
 
-const appName = process.env.npm_package_name || 'ERROR';
+const appName = package.name || 'VIKIgens';
 
 const run = async () => {
     welcome(appName);
