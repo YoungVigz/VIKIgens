@@ -1,0 +1,33 @@
+{
+  "name": "vikigens",
+  "version": "1.0.0",
+  "description": "VIKIgens is an CLI for creating app basic folder structure",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MCgabi/VIKIgens.git"
+  },
+  "bin": {
+    "VIKIgens": "./index.js"
+  },
+  "keywords": [
+    "CLI",
+    "VIKIgens"
+  ],
+  "author": "Gabriel Gałęza <gabrielgaleza@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MCgabi/VIKIgens/issues"
+  },
+  "homepage": "https://github.com/MCgabi/VIKIgens#readme",
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "figlet": "^1.2.1",
+    "inquirer": "^6.3.1",
+    "shelljs": "^0.8.3"
+  }
+}
