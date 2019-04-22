@@ -1,6 +1,6 @@
 {
   "name": "vikigens",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "VIKIgens is an CLI for creating app basic folder structure",
   "main": "index.js",
   "scripts": {

@@ -3,13 +3,18 @@ const fs = require('fs');
 const chalk = require('chalk');      
 
 exports.express = (projectName, gitData) => {
+    if (!shell.which('git')) {
+        return console.log(chalk.red('Sorry, this action requires git'));
+    }
+
     shell.mkdir(projectName);
     shell.cd(projectName);
-    shell.touch('app.js', 'server.js');
+    shell.touch('app.js', 'server.js', '.gitignore', 'README.md');
     shell.mkdir('public', 'views', 'api');
+    shell.exec('git init');
     
     const path = shell.pwd();
-    const { json, app, server } = require('./helpers');
+    const { json, app, server, gitignore, readme } = require('./helpers');
 
     json.name = projectName;
     json.repository.url = `git+https://github.com/${gitData.github_name}/${gitData.repo_name}.git`;
@@ -28,18 +33,36 @@ exports.express = (projectName, gitData) => {
         if(err) return console.log(chalk.red(`${err}`));
     });
 
-    console.log(chalk.green(`Done!`));
-    console.log(chalk.green(`Now run: `));
-    console.log(chalk.green(`cd ${projectName}`));
-    console.log(chalk.green(`npm i`));
-    console.log(chalk.green(`npm start`));
+    fs.writeFile(path+'/.gitignore', gitignore, (err) => {
+        if(err) return console.log(chalk.red(`${err}`));
+    });
+
+    fs.writeFile(path+'/README.md', readme(projectName), (err) => {
+        if(err) return console.log(chalk.red(`${err}`));
+    });
+
+    if (!shell.which('npm')) {
+        return console.log(chalk.red('Sorry, this action requires npm'));
+    }
+
+    shell.exec('npm i');    
+    console.log(chalk.green(`Done, your project should work!`));
+    shell.exec('npm start');    
 };
 
 exports.react = (projectName) => {
     if (!shell.which('create-react-app')) {
         return console.log(chalk.red('Sorry, this action requires create-react-app'));
     }
-
     shell.exec('create-react-app ' + projectName);
+    shell.cd(projectName);
+
+    const path = shell.pwd();
+    const { readme } = require('./helpers');
+
+    fs.writeFile(path+'/README.md', readme(projectName), (err) => {
+        if(err) return console.log(chalk.red(`${err}`));
+    });
+
     console.log(chalk.green(`Done!`));
 };
