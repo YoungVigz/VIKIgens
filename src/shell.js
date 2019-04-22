@@ -40,14 +40,11 @@ exports.express = (projectName, gitData) => {
     fs.writeFile(path+'/README.md', readme(projectName), (err) => {
         if(err) return console.log(chalk.red(`${err}`));
     });
-
-    if (!shell.which('npm')) {
-        return console.log(chalk.red('Sorry, this action requires npm'));
-    }
-
-    shell.exec('npm i');    
+ 
     console.log(chalk.green(`Done, your project should work!`));
-    shell.exec('npm start');    
+    console.log(chalk.green(`1. cd ${projectName}`));
+    console.log(chalk.green(`2. npm i`));
+    console.log(chalk.green(`3. npm start`));
 };
 
 exports.react = (projectName) => {
