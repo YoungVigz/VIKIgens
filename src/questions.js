@@ -5,7 +5,11 @@ module.exports = () => {
         {
             name: 'project_name',
             type: 'input',
-            message: 'Enter project name:'            
+            message: 'Enter project name:',
+            validate: (name) => {
+                name = name.split(" ")[0];
+                return name !== '';
+            }         
         },
         {
             name: 'project_type',
