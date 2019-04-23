@@ -9,6 +9,33 @@ exports.readme = (projectName) => {
     return `## ${projectName}`;
 }
 
+exports.indexView = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><%= projectName %></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome in <%= projectName %> app</h1>
+</body>
+</html>
+`
+
 exports.gitignore = `
 # Logs
 logs
@@ -105,14 +132,13 @@ app.use(express.static('public'));
     
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-    
-app.use('/', (req, res) => {
-    res.send('Welcome to ' + process.env.npm_package_name + ' app.');
-});
+
+app.use('/', (req, res) => res.render('index', {projectName: require('./package.json').name}));
     
 module.exports = app;`;
 
-exports.server = `require('./app').listen(process.env.PORT || 8000, () => console.log('Server is running..'));`;
+exports.server = `const port = process.env.PORT || 8000;
+require('./app').listen(port, () => console.log('Server is running.. PORT:' + port));`
 
 exports.json = {
     "name": "",
@@ -135,6 +161,7 @@ exports.json = {
     "homepage": "",
     "dependencies": {
         "express": "^4.16.4",
-        "body-parser": "^1.18.3"
+        "body-parser": "^1.18.3",
+        "ejs": "^2.6.1"
     }
 }

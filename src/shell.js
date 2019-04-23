@@ -14,7 +14,7 @@ exports.express = (projectName, gitData) => {
     shell.exec('git init');
     
     const path = shell.pwd();
-    const { json, app, server, gitignore, readme } = require('./helpers');
+    const { json, app, server, gitignore, readme, indexView } = require('./helpers');
 
     json.name = projectName;
     json.repository.url = `git+https://github.com/${gitData.github_name}/${gitData.repo_name}.git`;
@@ -41,6 +41,12 @@ exports.express = (projectName, gitData) => {
         if(err) return console.log(chalk.red(`${err}`));
     });
  
+    shell.cd('views');
+    shell.touch('index.ejs');
+    fs.writeFile(path+'/views/index.ejs', indexView, (err) => {
+        if(err) return console.log(chalk.red(`${err}`));
+    });
+
     console.log(chalk.green(`Done, your project should work!`));
     console.log(chalk.green(`1. cd ${projectName}`));
     console.log(chalk.green(`2. npm i`));
