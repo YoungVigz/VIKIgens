@@ -19,6 +19,12 @@ module.exports = () => {
             filter: (val) => {
                 return val.toLowerCase();
             }
+        },
+        {
+            name: 'git',
+            type: 'list',
+            message: 'Do you want to use git in your project?',
+            choices: ['yes', 'no']
         }
     ]);
 };

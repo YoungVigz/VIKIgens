@@ -6,8 +6,12 @@ module.exports = async (data) => {
     
     switch(data.project_type) {
         case 'express': 
-            const gitQuestions = require('./gitQuestions');
-            shell.express(projectName, await gitQuestions());
+            if(data.git == 'yes'){
+                const gitQuestions = require('./gitQuestions');
+                shell.express(projectName, await gitQuestions());
+            } else {
+                shell.express(projectName, []);
+            }
         break;
 
         case 'react':
