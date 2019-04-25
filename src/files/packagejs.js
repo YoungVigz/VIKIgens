@@ -18,8 +18,6 @@ module.exports = {
     },
     "homepage": "",
     "dependencies": {
-        "express": "^4.16.4",
-        "body-parser": "^1.18.3",
-        "ejs": "^2.6.1"
+        
     }
 }

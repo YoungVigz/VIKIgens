@@ -14,6 +14,11 @@ exports.express = (projectName, gitData) => {
     packagejs.name = projectName;
     packagejs.main = `server.js`;
     packagejs.scripts.start = `node server.js`;
+    packagejs.dependencies = {
+        "express": "^4.16.4",
+        "body-parser": "^1.18.3",
+        "ejs": "^2.6.1"
+    };
 
     if(gitData.github_name) {
         if (!shell.which('git')) {
