@@ -1,18 +1,12 @@
 #!/usr/bin/env node
 
-const { welcome, fetchArgs } = require('./src/helpers');
-const questions = require('./src/questions');
-const cli = require('./src/cli');
+const figlet = require('figlet');
+const chalk = require('chalk');
+const questions = require('./src/questions/questionsManager');
 
-const package = require('./package.json');
-const appName = package.name || 'VIKIgens';
-
-const run = async () => {
-    welcome(appName);
-    const argsMethods = fetchArgs(process.argv);
-    if(!argsMethods){
-        cli(await questions());
-    }
+const run = () => {
+    console.log(chalk.yellow(figlet.textSync(require('./package.json').name || 'VIKIgens')));
+    questions();
 };
 
 run();

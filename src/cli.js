@@ -1,24 +1,14 @@
-const chalk = require('chalk');
-const shell = require('./shell');
+const express = require('./commands/express');
+const react = require('./commands/react');
 
-module.exports = async (data) => {
-    const projectName = data.project_name;
-    
-    switch(data.project_type) {
-        case 'express': 
-            if(data.git == 'yes'){
-                const gitQuestions = require('./gitQuestions');
-                shell.express(projectName, await gitQuestions());
-            } else {
-                shell.express(projectName, []);
-            }
+module.exports = (data) => {
+    switch(data.projectType) {
+        case 'express':
+            express(data);
         break;
 
         case 'react':
-            shell.react(projectName);
+            react(data);
         break;
-
-        default:
-            return console.log(chalk.red.bold(`Type is invalid!`)); 
     }
 }

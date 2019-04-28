@@ -1,6 +1,6 @@
 ## VIKIgens
 
-VIKIgens is an cli for creating basic app structure.
+VIKIgens is a cli for creating basic app structure.
 
 **STEPS:**
 
