@@ -15,10 +15,11 @@ $ vikigens
 ## Current support:
 - [Express](https://expressjs.com/) 
 - [React](https://reactjs.org/) 
+- [Adonis](https://adonisjs.com/)
 
 ## Future support:
-- [Adonis](https://adonisjs.com/)
 - [Vue](https://vuejs.org/)
+- [Angular](https://angular.io/)
 
 ## How you can support me?
 I need your feedback to upgrade this app, also you can suggest another framework/library to implement.

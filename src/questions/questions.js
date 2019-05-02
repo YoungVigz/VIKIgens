@@ -17,7 +17,7 @@ exports.project_type = () => {
         name: 'project_type',
         type: 'list',
         message: 'Select project type:',
-        choices: ['Express', 'React'],
+        choices: ['Express', 'React', 'Adonis'],
         filter: (val) => {
             return val.toLowerCase();
         }

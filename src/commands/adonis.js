@@ -2,14 +2,16 @@ const shell = require('shelljs');
 const fs = require('fs');
 const chalk = require('chalk');      
 
-const packagejs = require('./files/react/package');
+const packagejs = require('./files/adonis/package');
 
 module.exports = (data) => {
-    if (!shell.which('create-react-app')) return console.log(chalk.red('Sorry, this action requires create-react-app'));
+    if(!shell.which('adonis')) return console.log(chalk.red('Sorry, this action requires adonis'));
 
-    shell.exec('create-react-app ' + data.projectName);
+    shell.exec('adonis new ' + data.projectName);
     shell.cd(data.projectName);
+    
     const path = shell.pwd();
+    packagejs.name = data.projectName;
 
     if(data.githubName) {
         if (!shell.which('git')) return console.log(chalk.red('Sorry, this action requires git'));
@@ -23,4 +25,5 @@ module.exports = (data) => {
 
     fs.writeFile(path+'/package.json', JSON.stringify(packagejs, null, 2), (err) => { if(err) return console.log(chalk.red(`${err}`)); });
     fs.writeFile(path+'/README.md', `## ${data.projectName}`, (err) => { if(err) return console.log(chalk.red(`${err}`)); });
+   
 }
