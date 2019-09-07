@@ -1,12 +1,15 @@
 #!/usr/bin/env node
 
-const figlet = require('figlet');
-const chalk = require('chalk');
-const questions = require('./src/questions/questionsManager');
+const { textSync } = require('figlet')
+const { yellow, red } = require('chalk')
+const cli = require('./src')
+const { which } = require('shelljs')
 
-const run = () => {
-    console.log(chalk.yellow(figlet.textSync(require('./package.json').name || 'VIKIgens')));
-    questions();
-};
+const init = async () => {
+    console.log(yellow(textSync('VIKIgens')))
+    if(!which('git')) return console.log(red('Opsss! This app requires git'))
+    await cli()
+    console.log(yellow('Thanks for using VIKIgens!'))
+}
 
-run();
+init()
